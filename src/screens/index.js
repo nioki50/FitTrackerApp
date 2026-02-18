@@ -5,3 +5,5 @@ export { StatsScreen } from './StatsScreen';
 export { SettingsScreen } from './SettingsScreen';
 export { ProgramSelectScreen } from './ProgramSelectScreen';
 export { WorkoutSummaryScreen } from './WorkoutSummaryScreen';
+export { CardioScreen } from './CardioScreen';
+export { CrossFitScreen } from './CrossFitScreen';

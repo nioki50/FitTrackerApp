@@ -7,6 +7,8 @@ const KEYS = {
   WEIGHTS: 'fittracker_weights',
   WEIGHT_GOAL: 'fittracker_weight_goal',
   EXERCISE_WEIGHTS: 'fittracker_exercise_weights',
+  CARDIO_SESSIONS: 'fittracker_cardio_sessions',
+  CROSSFIT_SESSIONS: 'fittracker_crossfit_sessions',
 };
 
 // Cycle actuel
@@ -136,6 +138,52 @@ export const saveWeightGoal = async (goal) => {
   }
 };
 
+// Sessions Cardio
+export const getCardioSessions = async () => {
+  try {
+    const data = await AsyncStorage.getItem(KEYS.CARDIO_SESSIONS);
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error('Error getting cardio sessions:', error);
+    return [];
+  }
+};
+
+export const saveCardioSession = async (session) => {
+  try {
+    const sessions = await getCardioSessions();
+    sessions.unshift(session);
+    await AsyncStorage.setItem(KEYS.CARDIO_SESSIONS, JSON.stringify(sessions));
+    return true;
+  } catch (error) {
+    console.error('Error saving cardio session:', error);
+    return false;
+  }
+};
+
+// Sessions CrossFit
+export const getCrossfitSessions = async () => {
+  try {
+    const data = await AsyncStorage.getItem(KEYS.CROSSFIT_SESSIONS);
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error('Error getting crossfit sessions:', error);
+    return [];
+  }
+};
+
+export const saveCrossfitSession = async (session) => {
+  try {
+    const sessions = await getCrossfitSessions();
+    sessions.unshift(session);
+    await AsyncStorage.setItem(KEYS.CROSSFIT_SESSIONS, JSON.stringify(sessions));
+    return true;
+  } catch (error) {
+    console.error('Error saving crossfit session:', error);
+    return false;
+  }
+};
+
 // Export/Import de toutes les données
 export const exportAllData = async () => {
   try {
@@ -145,6 +193,8 @@ export const exportAllData = async () => {
     const weights = await getWeightEntries();
     const weightGoal = await getWeightGoal();
     const exerciseWeights = await getExerciseWeights();
+    const cardioSessions = await getCardioSessions();
+    const crossfitSessions = await getCrossfitSessions();
 
     return {
       version: '1.0.0',
@@ -155,6 +205,8 @@ export const exportAllData = async () => {
       weights,
       weightGoal,
       exerciseWeights,
+      cardioSessions,
+      crossfitSessions,
     };
   } catch (error) {
     console.error('Error exporting data:', error);
@@ -170,6 +222,8 @@ export const importAllData = async (data) => {
     if (data.weights) await AsyncStorage.setItem(KEYS.WEIGHTS, JSON.stringify(data.weights));
     if (data.weightGoal) await saveWeightGoal(data.weightGoal);
     if (data.exerciseWeights) await AsyncStorage.setItem(KEYS.EXERCISE_WEIGHTS, JSON.stringify(data.exerciseWeights));
+    if (data.cardioSessions) await AsyncStorage.setItem(KEYS.CARDIO_SESSIONS, JSON.stringify(data.cardioSessions));
+    if (data.crossfitSessions) await AsyncStorage.setItem(KEYS.CROSSFIT_SESSIONS, JSON.stringify(data.crossfitSessions));
     return true;
   } catch (error) {
     console.error('Error importing data:', error);

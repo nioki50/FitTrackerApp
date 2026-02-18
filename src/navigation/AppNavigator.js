@@ -15,6 +15,8 @@ import {
   SettingsScreen,
   ProgramSelectScreen,
   WorkoutSummaryScreen,
+  CardioScreen,
+  CrossFitScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -154,6 +156,22 @@ export function AppNavigator() {
             title: 'Résumé',
             headerShown: false,
             gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="Cardio"
+          component={CardioScreen}
+          options={{
+            title: 'Cardio',
+            headerBackTitle: 'Retour',
+          }}
+        />
+        <Stack.Screen
+          name="CrossFit"
+          component={CrossFitScreen}
+          options={{
+            title: 'CrossFit',
+            headerBackTitle: 'Retour',
           }}
         />
       </Stack.Navigator>
