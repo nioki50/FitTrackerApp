@@ -90,6 +90,53 @@ export const SettingsScreen = ({ navigation }) => {
     await forceUpdate();
   };
 
+  // Convertit le format HTML vers le format React Native
+  const convertHtmlFormat = (data) => {
+    // Convertir les settings
+    const settings = data.settings ? {
+      level: data.settings.userLevel || data.settings.level || 'intermediaire',
+      sessionsPerWeek: data.settings.sessionsPerWeek || 4,
+      restTime: data.settings.restTime || 90,
+      soundEnabled: data.settings.soundEnabled !== false,
+      bisetEnabled: data.settings.bisetEnabled !== false,
+      autoExport: data.settings.autoExportEnabled || data.settings.autoExport || false,
+    } : null;
+
+    // Convertir le cycle
+    const cycle = data.currentCycle ? {
+      programId: data.currentCycle.programId,
+      programName: data.currentCycle.programId === 'volume' ? 'Volume - 4 semaines' : data.currentCycle.programId,
+      startDate: data.currentCycle.startDate,
+      totalWeeks: data.currentCycle.durationWeeks || 4,
+      currentWeek: Math.ceil((Date.now() - new Date(data.currentCycle.startDate).getTime()) / (7 * 24 * 60 * 60 * 1000)),
+      completedSessions: data.currentCycle.sessionsCompleted || 0,
+      currentWorkoutIndex: data.currentCycle.currentWorkoutIndex || 0,
+    } : data.cycle || null;
+
+    // Convertir exerciseHistory vers exerciseWeights (garder le dernier poids)
+    const exerciseWeights = {};
+    if (data.exerciseHistory) {
+      Object.keys(data.exerciseHistory).forEach(exerciseId => {
+        const history = data.exerciseHistory[exerciseId];
+        if (history && history.length > 0) {
+          const lastEntry = history[history.length - 1];
+          exerciseWeights[exerciseId] = lastEntry.weight || 0;
+        }
+      });
+    }
+
+    return {
+      version: data.version || '1.0.0',
+      exportDate: data.exportDate,
+      cycle,
+      sessions: data.sessions || [],
+      settings,
+      weights: data.weightHistory || data.weights || [],
+      weightGoal: data.weightLossGoal || data.weightGoal || null,
+      exerciseWeights: Object.keys(exerciseWeights).length > 0 ? exerciseWeights : (data.exerciseWeights || {}),
+    };
+  };
+
   const handleImport = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
@@ -105,21 +152,29 @@ export const SettingsScreen = ({ navigation }) => {
       const content = await FileSystem.readAsStringAsync(file.uri);
       const data = JSON.parse(content);
 
-      // Vérification basique de la structure du fichier
-      if (!data.version || !data.exportDate) {
+      // Vérification basique - accepte les deux formats
+      const isHtmlFormat = data.currentCycle !== undefined || data.exerciseHistory !== undefined;
+      const isRnFormat = data.version !== undefined && data.cycle !== undefined;
+
+      if (!data.exportDate && !data.sessions) {
         Alert.alert('Erreur', 'Le fichier sélectionné n\'est pas un export FitTracker valide.');
         return;
       }
 
+      // Convertir si c'est le format HTML
+      const importData = isHtmlFormat ? convertHtmlFormat(data) : data;
+
+      const formatInfo = isHtmlFormat ? ' (format web détecté)' : '';
+
       Alert.alert(
         'Confirmer l\'import',
-        `Voulez-vous importer les données du ${new Date(data.exportDate).toLocaleDateString('fr-FR')} ?\n\nCela remplacera vos données actuelles.`,
+        `Voulez-vous importer les données du ${new Date(data.exportDate).toLocaleDateString('fr-FR')} ?${formatInfo}\n\n${data.sessions?.length || 0} séances seront importées.\n\nCela remplacera vos données actuelles.`,
         [
           { text: 'Annuler', style: 'cancel' },
           {
             text: 'Importer',
             onPress: async () => {
-              const success = await importAllData(data);
+              const success = await importAllData(importData);
               if (success) {
                 loadData();
                 Alert.alert('Succès', 'Les données ont été importées avec succès.');
