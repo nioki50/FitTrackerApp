@@ -2,7 +2,7 @@
   "expo": {
     "name": "FitTracker Pro",
     "slug": "fittrackerapp",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -29,7 +29,9 @@
       "favicon": "./assets/favicon.png"
     },
     "updates": {
-      "enabled": false
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/a410c4b3-3d26-4a76-94fb-fd33abe9691f"
     },
     "runtimeVersion": {
       "policy": "sdkVersion"

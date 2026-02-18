@@ -387,7 +387,7 @@ export const SettingsScreen = ({ navigation }) => {
       </Card>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>FitTracker Pro v1.0.0</Text>
+        <Text style={styles.footerText}>FitTracker Pro v1.0.1</Text>
         <Text style={styles.footerText}>Powered by nioki50</Text>
       </View>
     </ScrollView>
