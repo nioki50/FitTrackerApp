@@ -140,46 +140,64 @@ export const SettingsScreen = ({ navigation }) => {
   const handleImport = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: 'application/json',
+        type: ['application/json', '*/*'],
         copyToCacheDirectory: true,
       });
+
+      console.log('DocumentPicker result:', result);
 
       if (result.canceled) {
         return;
       }
 
       const file = result.assets[0];
+      console.log('File selected:', file.name, file.uri);
+
       const content = await FileSystem.readAsStringAsync(file.uri);
+      console.log('File content length:', content.length);
+
       const data = JSON.parse(content);
+      console.log('Parsed data keys:', Object.keys(data));
 
       // Vérification basique - accepte les deux formats
-      const isHtmlFormat = data.currentCycle !== undefined || data.exerciseHistory !== undefined;
-      const isRnFormat = data.version !== undefined && data.cycle !== undefined;
+      const isHtmlFormat = data.currentCycle !== undefined || data.exerciseHistory !== undefined || data.settings?.userLevel !== undefined;
+      const hasValidData = data.exportDate || data.sessions || data.settings;
 
-      if (!data.exportDate && !data.sessions) {
-        Alert.alert('Erreur', 'Le fichier sélectionné n\'est pas un export FitTracker valide.');
+      console.log('isHtmlFormat:', isHtmlFormat, 'hasValidData:', hasValidData);
+
+      if (!hasValidData) {
+        Alert.alert('Erreur', 'Le fichier sélectionné n\'est pas un export FitTracker valide.\n\nClés trouvées: ' + Object.keys(data).join(', '));
         return;
       }
 
       // Convertir si c'est le format HTML
       const importData = isHtmlFormat ? convertHtmlFormat(data) : data;
+      console.log('Import data prepared:', Object.keys(importData));
 
       const formatInfo = isHtmlFormat ? ' (format web détecté)' : '';
+      const sessionCount = data.sessions?.length || 0;
 
       Alert.alert(
         'Confirmer l\'import',
-        `Voulez-vous importer les données du ${new Date(data.exportDate).toLocaleDateString('fr-FR')} ?${formatInfo}\n\n${data.sessions?.length || 0} séances seront importées.\n\nCela remplacera vos données actuelles.`,
+        `Voulez-vous importer les données du ${new Date(data.exportDate).toLocaleDateString('fr-FR')} ?${formatInfo}\n\n${sessionCount} séances seront importées.\n\nCela remplacera vos données actuelles.`,
         [
           { text: 'Annuler', style: 'cancel' },
           {
             text: 'Importer',
             onPress: async () => {
-              const success = await importAllData(importData);
-              if (success) {
-                loadData();
-                Alert.alert('Succès', 'Les données ont été importées avec succès.');
-              } else {
-                Alert.alert('Erreur', 'Une erreur est survenue lors de l\'import.');
+              try {
+                console.log('Starting import...');
+                const success = await importAllData(importData);
+                console.log('Import result:', success);
+                if (success) {
+                  loadData();
+                  Alert.alert('Succès', `${sessionCount} séances importées avec succès.`);
+                } else {
+                  Alert.alert('Erreur', 'Une erreur est survenue lors de l\'import.');
+                }
+              } catch (importError) {
+                console.error('Import error:', importError);
+                Alert.alert('Erreur', 'Erreur lors de l\'import: ' + importError.message);
               }
             },
           },
@@ -187,7 +205,7 @@ export const SettingsScreen = ({ navigation }) => {
       );
     } catch (error) {
       console.error('Erreur import:', error);
-      Alert.alert('Erreur', 'Impossible de lire le fichier. Assurez-vous qu\'il s\'agit d\'un fichier JSON valide.');
+      Alert.alert('Erreur', 'Impossible de lire le fichier.\n\n' + error.message);
     }
   };
 
