@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FitTracker Pro",
-    "slug": "fittracker-pro",
+    "slug": "fittrackerapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,18 +29,20 @@
       "favicon": "./assets/favicon.png"
     },
     "updates": {
-      "enabled": true,
-      "checkAutomatically": "ON_LOAD",
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/your-project-id"
+      "enabled": false
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "extra": {
       "eas": {
-        "projectId": "your-project-id"
+        "projectId": "a410c4b3-3d26-4a76-94fb-fd33abe9691f"
       }
-    }
+    },
+    "owner": "nioky50",
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ]
   }
 }

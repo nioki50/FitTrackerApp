@@ -1,74 +1,101 @@
-import * as Updates from 'expo-updates';
 import { Alert } from 'react-native';
+import * as Updates from 'expo-updates';
 
-// Vérifie et applique les mises à jour OTA au lancement
+// Vérifie si une mise à jour est disponible
 export const checkForUpdates = async () => {
-  if (__DEV__) {
-    console.log('Mode développement - Pas de vérification des mises à jour');
-    return { isAvailable: false };
-  }
-
   try {
+    // En mode développement, les updates ne sont pas disponibles
+    if (__DEV__) {
+      return { isAvailable: false, isDev: true };
+    }
+
     const update = await Updates.checkForUpdateAsync();
+    return {
+      isAvailable: update.isAvailable,
+      manifest: update.manifest,
+    };
+  } catch (error) {
+    console.error('Erreur lors de la vérification des mises à jour:', error);
+    return { isAvailable: false, error: error.message };
+  }
+};
 
-    if (update.isAvailable) {
-      console.log('Mise à jour disponible, téléchargement...');
-      await Updates.fetchUpdateAsync();
+// Télécharge et applique une mise à jour
+export const downloadAndApplyUpdate = async () => {
+  try {
+    const fetchResult = await Updates.fetchUpdateAsync();
+    if (fetchResult.isNew) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Erreur lors du téléchargement de la mise à jour:', error);
+    throw error;
+  }
+};
 
-      // Demander à l'utilisateur s'il veut redémarrer
+// Recharge l'application avec la nouvelle version
+export const reloadApp = async () => {
+  await Updates.reloadAsync();
+};
+
+// Vérifie et propose la mise à jour à l'utilisateur
+export const forceUpdate = async () => {
+  try {
+    // En mode développement
+    if (__DEV__) {
+      Alert.alert(
+        'Mode développement',
+        'Les mises à jour OTA ne sont pas disponibles en mode développement (Expo Go). Elles seront actives dans la version de production (APK/IPA).'
+      );
+      return false;
+    }
+
+    Alert.alert('Vérification', 'Recherche de mises à jour en cours...');
+
+    const result = await checkForUpdates();
+
+    if (result.isAvailable) {
       Alert.alert(
         'Mise à jour disponible',
-        'Une nouvelle version est prête. Voulez-vous redémarrer pour l\'appliquer ?',
+        'Une nouvelle version est disponible. Voulez-vous la télécharger et l\'installer maintenant ?',
         [
+          { text: 'Plus tard', style: 'cancel' },
           {
-            text: 'Plus tard',
-            style: 'cancel',
-          },
-          {
-            text: 'Redémarrer',
+            text: 'Mettre à jour',
             onPress: async () => {
-              await Updates.reloadAsync();
+              try {
+                Alert.alert('Téléchargement', 'Téléchargement de la mise à jour...');
+                await downloadAndApplyUpdate();
+                Alert.alert(
+                  'Mise à jour prête',
+                  'La mise à jour a été téléchargée. L\'application va redémarrer.',
+                  [
+                    {
+                      text: 'Redémarrer',
+                      onPress: () => reloadApp(),
+                    },
+                  ]
+                );
+              } catch (error) {
+                Alert.alert('Erreur', 'Impossible de télécharger la mise à jour. Réessayez plus tard.');
+              }
             },
           },
         ]
       );
-
-      return { isAvailable: true, manifest: update.manifest };
-    }
-
-    return { isAvailable: false };
-  } catch (error) {
-    console.error('Erreur lors de la vérification des mises à jour:', error);
-    return { isAvailable: false, error };
-  }
-};
-
-// Force la vérification et l'application immédiate
-export const forceUpdate = async () => {
-  if (__DEV__) {
-    Alert.alert('Mode développement', 'Les mises à jour OTA ne fonctionnent pas en mode développement.');
-    return false;
-  }
-
-  try {
-    const update = await Updates.checkForUpdateAsync();
-
-    if (update.isAvailable) {
-      await Updates.fetchUpdateAsync();
-      await Updates.reloadAsync();
       return true;
     } else {
-      Alert.alert('À jour', 'Vous avez déjà la dernière version.');
+      Alert.alert('À jour', 'Vous avez déjà la dernière version de l\'application.');
       return false;
     }
   } catch (error) {
-    console.error('Erreur lors de la mise à jour forcée:', error);
-    Alert.alert('Erreur', 'Impossible de vérifier les mises à jour.');
+    Alert.alert('Erreur', 'Impossible de vérifier les mises à jour. Vérifiez votre connexion internet.');
     return false;
   }
 };
 
-// Informations sur la version actuelle
+// Obtient les informations sur la version actuelle
 export const getUpdateInfo = () => {
   if (__DEV__) {
     return {
@@ -80,9 +107,8 @@ export const getUpdateInfo = () => {
 
   return {
     isEmbeddedLaunch: Updates.isEmbeddedLaunch,
-    channel: Updates.channel,
-    runtimeVersion: Updates.runtimeVersion,
-    createdAt: Updates.createdAt,
+    channel: Updates.channel || 'production',
+    runtimeVersion: Updates.runtimeVersion || '1.0.0',
     updateId: Updates.updateId,
   };
 };

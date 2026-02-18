@@ -8,11 +8,13 @@ import {
   TouchableOpacity,
   Image,
   Modal,
+  ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, borderRadius } from '../theme/colors';
 import { Button } from '../components';
 import { getExerciseWeights, getSettings } from '../services/storage';
+import { findExerciseDetails } from '../data/exerciseDetails';
 
 export const ExerciseScreen = ({ navigation, route }) => {
   const { exercise, exerciseIndex, workout, cycle, onComplete } = route.params;
@@ -25,10 +27,15 @@ export const ExerciseScreen = ({ navigation, route }) => {
   const [restTime, setRestTime] = useState(90);
   const [restTimeLeft, setRestTimeLeft] = useState(90);
   const [settings, setSettings] = useState(null);
+  const [exerciseDetails, setExerciseDetails] = useState(null);
+  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     loadSettings();
     loadLastWeight();
+    // Charger les détails de l'exercice (images, instructions)
+    const details = findExerciseDetails(exercise.name);
+    setExerciseDetails(details);
   }, []);
 
   useEffect(() => {
@@ -98,6 +105,49 @@ export const ExerciseScreen = ({ navigation, route }) => {
             {exercise.sets} séries x {exercise.reps} reps
           </Text>
         </View>
+
+        {/* Images de l'exercice */}
+        {exerciseDetails && (
+          <View style={styles.imagesContainer}>
+            <View style={styles.imageWrapper}>
+              {imageLoading && (
+                <ActivityIndicator style={styles.imageLoader} color={colors.accentPrimary} />
+              )}
+              <Image
+                source={{ uri: exerciseDetails.image }}
+                style={styles.exerciseImage}
+                resizeMode="cover"
+                onLoadStart={() => setImageLoading(true)}
+                onLoadEnd={() => setImageLoading(false)}
+              />
+              <Text style={styles.imageLabel}>Départ</Text>
+            </View>
+            <View style={styles.imageWrapper}>
+              <Image
+                source={{ uri: exerciseDetails.image2 }}
+                style={styles.exerciseImage}
+                resizeMode="cover"
+              />
+              <Text style={styles.imageLabel}>Fin</Text>
+            </View>
+          </View>
+        )}
+
+        {/* Muscles ciblés */}
+        {exerciseDetails && exerciseDetails.muscles && (
+          <View style={styles.musclesContainer}>
+            {exerciseDetails.muscles.principaux.map((muscle, index) => (
+              <View key={index} style={styles.muscleTag}>
+                <Text style={styles.muscleTagText}>{muscle}</Text>
+              </View>
+            ))}
+            {exerciseDetails.muscles.secondaires.map((muscle, index) => (
+              <View key={`sec-${index}`} style={[styles.muscleTag, styles.muscleTagSecondary]}>
+                <Text style={styles.muscleTagTextSecondary}>{muscle}</Text>
+              </View>
+            ))}
+          </View>
+        )}
 
         {/* Progress dots */}
         <View style={styles.seriesProgress}>
@@ -226,6 +276,58 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.textSecondary,
     marginTop: spacing.xs,
+  },
+  imagesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: spacing.md,
+    marginBottom: spacing.lg,
+  },
+  imageWrapper: {
+    alignItems: 'center',
+  },
+  exerciseImage: {
+    width: 140,
+    height: 140,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.bgSecondary,
+  },
+  imageLoader: {
+    position: 'absolute',
+    top: 60,
+    left: 60,
+    zIndex: 1,
+  },
+  imageLabel: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: spacing.xs,
+  },
+  musclesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: spacing.xs,
+    marginBottom: spacing.lg,
+  },
+  muscleTag: {
+    backgroundColor: colors.accentPrimary,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: 20,
+  },
+  muscleTagText: {
+    fontSize: 11,
+    color: 'white',
+    fontWeight: '600',
+  },
+  muscleTagSecondary: {
+    backgroundColor: colors.bgTertiary,
+  },
+  muscleTagTextSecondary: {
+    fontSize: 11,
+    color: colors.textSecondary,
+    fontWeight: '500',
   },
   seriesProgress: {
     flexDirection: 'row',

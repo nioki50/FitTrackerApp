@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useFocusEffect } from '@react-navigation/native';
+import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 import { colors, spacing, borderRadius } from '../theme/colors';
 import { Button, Card } from '../components';
 import {
@@ -17,6 +19,7 @@ import {
   saveSettings,
   getCycle,
   exportAllData,
+  importAllData,
   clearAllData,
 } from '../services/storage';
 import { forceUpdate, getUpdateInfo } from '../services/updates';
@@ -85,6 +88,52 @@ export const SettingsScreen = ({ navigation }) => {
 
   const handleCheckUpdate = async () => {
     await forceUpdate();
+  };
+
+  const handleImport = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: 'application/json',
+        copyToCacheDirectory: true,
+      });
+
+      if (result.canceled) {
+        return;
+      }
+
+      const file = result.assets[0];
+      const content = await FileSystem.readAsStringAsync(file.uri);
+      const data = JSON.parse(content);
+
+      // Vérification basique de la structure du fichier
+      if (!data.version || !data.exportDate) {
+        Alert.alert('Erreur', 'Le fichier sélectionné n\'est pas un export FitTracker valide.');
+        return;
+      }
+
+      Alert.alert(
+        'Confirmer l\'import',
+        `Voulez-vous importer les données du ${new Date(data.exportDate).toLocaleDateString('fr-FR')} ?\n\nCela remplacera vos données actuelles.`,
+        [
+          { text: 'Annuler', style: 'cancel' },
+          {
+            text: 'Importer',
+            onPress: async () => {
+              const success = await importAllData(data);
+              if (success) {
+                loadData();
+                Alert.alert('Succès', 'Les données ont été importées avec succès.');
+              } else {
+                Alert.alert('Erreur', 'Une erreur est survenue lors de l\'import.');
+              }
+            },
+          },
+        ]
+      );
+    } catch (error) {
+      console.error('Erreur import:', error);
+      Alert.alert('Erreur', 'Impossible de lire le fichier. Assurez-vous qu\'il s\'agit d\'un fichier JSON valide.');
+    }
   };
 
   const updateInfo = getUpdateInfo();
@@ -235,7 +284,7 @@ export const SettingsScreen = ({ navigation }) => {
             title="Importer"
             variant="secondary"
             size="small"
-            onPress={() => Alert.alert('Info', "L'import sera disponible prochainement")}
+            onPress={handleImport}
             style={styles.halfButton}
           />
         </View>

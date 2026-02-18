@@ -1,8 +1,10 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '../theme/colors';
 
 import {
@@ -32,6 +34,8 @@ const screenOptions = {
 };
 
 function TabNavigator() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -62,13 +66,13 @@ function TabNavigator() {
         tabBarStyle: {
           backgroundColor: colors.bgSecondary,
           borderTopColor: colors.bgTertiary,
-          paddingBottom: 5,
-          paddingTop: 5,
-          height: 60,
+          paddingBottom: Math.max(insets.bottom, 10),
+          paddingTop: 8,
+          height: 65 + Math.max(insets.bottom, 10),
         },
         tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: '500',
+          fontSize: 12,
+          fontWeight: '600',
         },
         headerShown: false,
       })}
