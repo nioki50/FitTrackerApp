@@ -387,7 +387,7 @@ export const SettingsScreen = ({ navigation }) => {
       </Card>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>FitTracker Pro v1.0.2</Text>
+        <Text style={styles.footerText}>FitTracker Pro v1.0.3</Text>
         <Text style={styles.footerText}>Powered by nioki50</Text>
       </View>
     </ScrollView>
@@ -439,13 +439,15 @@ const styles = StyleSheet.create({
   },
   pickerWrapper: {
     width: 155,
+    height: 50,
     backgroundColor: colors.bgTertiary,
     borderRadius: borderRadius.sm,
     overflow: 'hidden',
+    justifyContent: 'center',
   },
   picker: {
     color: colors.textPrimary,
-    height: 40,
+    height: 50,
   },
   cycleInfo: {
     marginBottom: spacing.md,
