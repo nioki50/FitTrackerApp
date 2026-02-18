@@ -2,14 +2,14 @@
   "expo": {
     "name": "FitTracker Pro",
     "slug": "fittrackerapp",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0f0f1a"
+      "backgroundColor": "#2d1f3d"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,7 +21,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#0f0f1a"
+        "backgroundColor": "#2d1f3d"
       },
       "package": "com.nioki50.fittracker"
     },
