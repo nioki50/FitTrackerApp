@@ -11,7 +11,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import { useFocusEffect } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
-import * as FileSystem from 'expo-file-system';
+import { File } from 'expo-file-system/next';
 import { colors, spacing, borderRadius } from '../theme/colors';
 import { Button, Card } from '../components';
 import {
@@ -150,10 +150,11 @@ export const SettingsScreen = ({ navigation }) => {
         return;
       }
 
-      const file = result.assets[0];
-      console.log('File selected:', file.name, file.uri);
+      const pickedFile = result.assets[0];
+      console.log('File selected:', pickedFile.name, pickedFile.uri);
 
-      const content = await FileSystem.readAsStringAsync(file.uri);
+      const file = new File(pickedFile.uri);
+      const content = await file.text();
       console.log('File content length:', content.length);
 
       const data = JSON.parse(content);
