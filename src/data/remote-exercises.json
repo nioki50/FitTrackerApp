@@ -1,0 +1,545 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-02-18",
+  "bodyweightAlternatives": {
+    "Développé couché": "Pompes",
+    "Développé incliné": "Pompes déclinées (pieds surélevés)",
+    "Développé haltères": "Pompes larges",
+    "Floor press": "Pompes serrées",
+    "Développé incliné barre": "Pompes déclinées",
+    "Développé incliné haltères": "Pompes pieds surélevés",
+    "Rowing barre": "Rowing inversé (sous une table)",
+    "Rowing haltères": "Rowing inversé prise serrée",
+    "Rowing haltère": "Rowing inversé unilatéral",
+    "Rowing haltère lourd": "Rowing inversé lesté (sac à dos)",
+    "Rowing Pendlay": "Rowing inversé explosif",
+    "Rowing T-bar": "Rowing inversé prise large",
+    "Tractions": "Tractions (barre de porte ou parc)",
+    "Tractions lestées": "Tractions avec sac à dos lesté",
+    "Tractions pronation": "Tractions prise large",
+    "Tractions supination": "Chin-ups (prise supination)",
+    "Tractions neutres": "Tractions prise neutre",
+    "Tirage vertical": "Tractions assistées (élastique)",
+    "Tirage neutre": "Tractions prise neutre",
+    "Développé militaire": "Pike push-ups",
+    "Développé épaules": "Pike push-ups",
+    "Développé haltères épaules": "Pike push-ups pieds surélevés",
+    "Push press": "Pike push-ups explosifs",
+    "Développé Arnold": "Pike push-ups avec rotation",
+    "Élévations latérales": "Élévations latérales PDC (bras tendus contre mur)",
+    "Élévations frontales": "Front raises PDC (contre résistance)",
+    "Oiseau": "Reverse fly PDC (allongé sur le ventre)",
+    "Face pull": "Face pull avec serviette (accroché à une porte)",
+    "Shrugs": "Shrugs isométriques (pousser contre cadre porte)",
+    "Dips": "Dips sur chaise ou entre deux chaises",
+    "Dips lestés": "Dips sur chaise avec sac à dos",
+    "Curl barre": "Curl avec serviette (résistance isométrique)",
+    "Curl marteau": "Curl isométrique contre mur",
+    "Curl incliné": "Curl concentration PDC",
+    "Extension triceps": "Diamond push-ups",
+    "Barre au front": "Triceps extension au sol",
+    "Pushdown corde": "Diamond push-ups",
+    "Kickback triceps": "Triceps dips au sol",
+    "Squat barre": "Squats sautés ou Squats pistol assistés",
+    "Squat avant": "Sissy squat",
+    "Squat pause": "Squat isométrique (chaise invisible)",
+    "Goblet squat": "Squat sumo PDC profond",
+    "Squat bulgare": "Squat bulgare PDC",
+    "Squat hack": "Sissy squat",
+    "Fentes": "Fentes alternées PDC",
+    "Fentes marchées": "Fentes sautées alternées",
+    "Fentes arrière": "Fentes arrière PDC",
+    "Fentes latérales": "Fentes latérales PDC",
+    "Fentes bulgares": "Squat bulgare PDC",
+    "Soulevé de terre": "Good morning PDC",
+    "Soulevé conventionnel": "Good morning PDC",
+    "Soulevé sumo": "Sumo squat PDC profond",
+    "Soulevé roumain": "Single leg deadlift PDC",
+    "Soulevé jambes tendues": "Good morning PDC jambes tendues",
+    "Trap bar deadlift": "Good morning PDC",
+    "Hip thrust": "Pont fessier (glute bridge)",
+    "Hip thrust barre": "Pont fessier unilatéral",
+    "Presse à cuisses": "Squats profonds PDC",
+    "Presse à cuisses / Hack squat": "Sissy squat ou Squats profonds",
+    "Hack squat": "Sissy squat",
+    "Leg press": "Squats sautés",
+    "Extension quadriceps": "Sissy squat ou Extensions jambe assis (sans machine)",
+    "Leg curl": "Nordic curl (assisté) ou Leg curl au sol avec serviette",
+    "Leg curl élastique": "Nordic curl assisté ou Glute-ham raise",
+    "Abducteurs": "Clamshells (palourdes) ou Abductions latérales au sol",
+    "Adducteurs": "Adductions au sol ou Sumo squat PDC",
+    "Mollets debout": "Mollets sur marche d'escalier",
+    "Mollets assis": "Mollets assis sur chaise (poids sur genoux optionnel)",
+    "Mollets": "Mollets sur marche",
+    "Écarté poulie / haltères": "Pompes larges avec pause en bas",
+    "Écarté couché": "Pompes larges tempo lent",
+    "Pont fessier": "Pont fessier PDC",
+    "Pont fessier unilatéral": "Single leg glute bridge",
+    "Sumo squat": "Sumo squat PDC",
+    "Sumo squat haltère": "Sumo squat PDC profond",
+    "default": "Version poids de corps adaptée"
+  },
+  "exercises": [
+    {
+      "id": "bench",
+      "name": "Développé couché",
+      "category": "pectoraux",
+      "equipment": "barre",
+      "variants": ["Développé couché", "Développé incliné", "Floor press", "Développé décliné"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/1.jpg",
+      "muscles": { "primary": ["Pectoraux"], "secondary": ["Triceps", "Deltoïdes antérieurs"] }
+    },
+    {
+      "id": "incline_bench",
+      "name": "Développé incliné",
+      "category": "pectoraux",
+      "equipment": "barre",
+      "variants": ["Développé incliné barre", "Développé incliné haltères"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/1.jpg",
+      "muscles": { "primary": ["Pectoraux supérieurs"], "secondary": ["Triceps", "Deltoïdes"] }
+    },
+    {
+      "id": "db_bench",
+      "name": "Développé haltères",
+      "category": "pectoraux",
+      "equipment": "haltères",
+      "variants": ["Développé haltères plat", "Développé haltères incliné"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/1.jpg",
+      "muscles": { "primary": ["Pectoraux"], "secondary": ["Triceps", "Deltoïdes"] }
+    },
+    {
+      "id": "pushups",
+      "name": "Pompes",
+      "category": "pectoraux",
+      "equipment": "pdc",
+      "variants": ["Pompes classiques", "Pompes larges", "Pompes serrées", "Pompes déclinées"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/1.jpg",
+      "muscles": { "primary": ["Pectoraux", "Triceps"], "secondary": ["Deltoïdes", "Core"] }
+    },
+    {
+      "id": "flyes",
+      "name": "Écarté",
+      "category": "pectoraux",
+      "equipment": "haltères",
+      "variants": ["Écarté haltères", "Écarté poulie", "Écarté incliné"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/1.jpg",
+      "muscles": { "primary": ["Pectoraux"], "secondary": ["Deltoïdes antérieurs"] }
+    },
+    {
+      "id": "row",
+      "name": "Rowing barre",
+      "category": "dos",
+      "equipment": "barre",
+      "variants": ["Rowing barre", "Rowing Pendlay", "Rowing T-bar", "Rowing Yates"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Trapèzes"], "secondary": ["Biceps", "Rhomboïdes"] }
+    },
+    {
+      "id": "db_row",
+      "name": "Rowing haltère",
+      "category": "dos",
+      "equipment": "haltères",
+      "variants": ["Rowing haltère unilatéral", "Rowing haltères bilatéral", "Rowing Meadows"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/1.jpg",
+      "muscles": { "primary": ["Dorsaux"], "secondary": ["Biceps", "Rhomboïdes"] }
+    },
+    {
+      "id": "pullups",
+      "name": "Tractions",
+      "category": "dos",
+      "equipment": "barre",
+      "variants": ["Tractions pronation", "Tractions supination (chin-ups)", "Tractions neutres", "Tractions larges"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/1.jpg",
+      "muscles": { "primary": ["Dorsaux"], "secondary": ["Biceps", "Trapèzes"] }
+    },
+    {
+      "id": "lat_pulldown",
+      "name": "Tirage vertical",
+      "category": "dos",
+      "equipment": "poulie",
+      "variants": ["Tirage large", "Tirage serré", "Tirage neutre", "Tirage unilatéral"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/1.jpg",
+      "muscles": { "primary": ["Dorsaux"], "secondary": ["Biceps", "Trapèzes"] }
+    },
+    {
+      "id": "inverted_row",
+      "name": "Rowing inversé",
+      "category": "dos",
+      "equipment": "pdc",
+      "variants": ["Rowing inversé classique", "Rowing inversé pieds surélevés", "Rowing inversé unilatéral"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Trapèzes"], "secondary": ["Biceps"] }
+    },
+    {
+      "id": "face_pull",
+      "name": "Face pull",
+      "category": "dos",
+      "equipment": "poulie",
+      "variants": ["Face pull poulie", "Face pull élastique", "Face pull serviette"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/1.jpg",
+      "muscles": { "primary": ["Deltoïdes postérieurs", "Trapèzes"], "secondary": ["Rhomboïdes"] }
+    },
+    {
+      "id": "ohp",
+      "name": "Développé militaire",
+      "category": "epaules",
+      "equipment": "barre",
+      "variants": ["Développé militaire debout", "Développé militaire assis", "Push press"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shoulder_Press/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shoulder_Press/1.jpg",
+      "muscles": { "primary": ["Deltoïdes"], "secondary": ["Triceps", "Trapèzes"] }
+    },
+    {
+      "id": "db_press",
+      "name": "Développé haltères épaules",
+      "category": "epaules",
+      "equipment": "haltères",
+      "variants": ["Développé haltères assis", "Développé Arnold", "Développé alterné"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/1.jpg",
+      "muscles": { "primary": ["Deltoïdes"], "secondary": ["Triceps"] }
+    },
+    {
+      "id": "lateral_raise",
+      "name": "Élévations latérales",
+      "category": "epaules",
+      "equipment": "haltères",
+      "variants": ["Élévations latérales debout", "Élévations latérales assis", "Élévations câble"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/1.jpg",
+      "muscles": { "primary": ["Deltoïdes latéraux"], "secondary": ["Trapèzes"] }
+    },
+    {
+      "id": "pike_pushups",
+      "name": "Pike push-ups",
+      "category": "epaules",
+      "equipment": "pdc",
+      "variants": ["Pike push-ups", "Pike push-ups pieds surélevés", "Wall HSPU"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pike_Push_Press/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pike_Push_Press/1.jpg",
+      "muscles": { "primary": ["Deltoïdes"], "secondary": ["Triceps", "Core"] }
+    },
+    {
+      "id": "rear_delt",
+      "name": "Oiseau",
+      "category": "epaules",
+      "equipment": "haltères",
+      "variants": ["Oiseau haltères", "Oiseau poulie", "Oiseau machine"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench/1.jpg",
+      "muscles": { "primary": ["Deltoïdes postérieurs"], "secondary": ["Trapèzes", "Rhomboïdes"] }
+    },
+    {
+      "id": "barbell_curl",
+      "name": "Curl barre",
+      "category": "biceps",
+      "equipment": "barre",
+      "variants": ["Curl barre droite", "Curl barre EZ", "Curl 21s"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/1.jpg",
+      "muscles": { "primary": ["Biceps"], "secondary": ["Avant-bras"] }
+    },
+    {
+      "id": "db_curl",
+      "name": "Curl haltères",
+      "category": "biceps",
+      "equipment": "haltères",
+      "variants": ["Curl alterné", "Curl marteau", "Curl incliné", "Curl concentré"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/1.jpg",
+      "muscles": { "primary": ["Biceps"], "secondary": ["Brachial", "Avant-bras"] }
+    },
+    {
+      "id": "dips",
+      "name": "Dips",
+      "category": "triceps",
+      "equipment": "barres parallèles",
+      "variants": ["Dips classiques", "Dips lestés", "Dips sur chaise"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/1.jpg",
+      "muscles": { "primary": ["Triceps", "Pectoraux"], "secondary": ["Deltoïdes"] }
+    },
+    {
+      "id": "tricep_ext",
+      "name": "Extension triceps",
+      "category": "triceps",
+      "equipment": "haltères",
+      "variants": ["Extension overhead", "Barre au front", "Kickback"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_One-Arm_Triceps_Extension/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_One-Arm_Triceps_Extension/1.jpg",
+      "muscles": { "primary": ["Triceps"], "secondary": [] }
+    },
+    {
+      "id": "pushdown",
+      "name": "Pushdown triceps",
+      "category": "triceps",
+      "equipment": "poulie",
+      "variants": ["Pushdown corde", "Pushdown barre", "Pushdown unilatéral"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/1.jpg",
+      "muscles": { "primary": ["Triceps"], "secondary": [] }
+    },
+    {
+      "id": "diamond_pushups",
+      "name": "Diamond push-ups",
+      "category": "triceps",
+      "equipment": "pdc",
+      "variants": ["Diamond push-ups", "Close grip push-ups"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Diamond_Push-Up/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Diamond_Push-Up/1.jpg",
+      "muscles": { "primary": ["Triceps"], "secondary": ["Pectoraux"] }
+    },
+    {
+      "id": "squat",
+      "name": "Squat barre",
+      "category": "quadriceps",
+      "equipment": "barre",
+      "variants": ["Squat arrière", "Squat avant", "Squat pause", "Squat box"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Full_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Full_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers"], "secondary": ["Ischio-jambiers", "Core"] }
+    },
+    {
+      "id": "goblet_squat",
+      "name": "Goblet squat",
+      "category": "quadriceps",
+      "equipment": "haltères",
+      "variants": ["Goblet squat", "Goblet squat pause"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers"], "secondary": ["Core"] }
+    },
+    {
+      "id": "bulgarian",
+      "name": "Squat bulgare",
+      "category": "quadriceps",
+      "equipment": "haltères",
+      "variants": ["Squat bulgare haltères", "Squat bulgare PDC", "Squat bulgare barre"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Single_Leg_Split_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Single_Leg_Split_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers"], "secondary": ["Ischio-jambiers"] }
+    },
+    {
+      "id": "lunges",
+      "name": "Fentes",
+      "category": "quadriceps",
+      "equipment": "haltères",
+      "variants": ["Fentes marchées", "Fentes arrière", "Fentes latérales", "Fentes sautées"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges_-_Walking/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges_-_Walking/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers"], "secondary": ["Ischio-jambiers"] }
+    },
+    {
+      "id": "leg_press",
+      "name": "Presse à cuisses",
+      "category": "quadriceps",
+      "equipment": "machine",
+      "variants": ["Presse classique", "Presse pieds hauts", "Presse unilatérale"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hack_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hack_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps"], "secondary": ["Fessiers", "Ischio-jambiers"] }
+    },
+    {
+      "id": "leg_ext",
+      "name": "Extension quadriceps",
+      "category": "quadriceps",
+      "equipment": "machine",
+      "variants": ["Extension bilatérale", "Extension unilatérale"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/1.jpg",
+      "muscles": { "primary": ["Quadriceps"], "secondary": [] }
+    },
+    {
+      "id": "sissy_squat",
+      "name": "Sissy squat",
+      "category": "quadriceps",
+      "equipment": "pdc",
+      "variants": ["Sissy squat assisté", "Sissy squat complet"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sissy_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sissy_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps"], "secondary": [] }
+    },
+    {
+      "id": "jump_squat",
+      "name": "Squat sauté",
+      "category": "quadriceps",
+      "equipment": "pdc",
+      "variants": ["Squat sauté", "Box jump", "Squat jump 180°"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Freehand_Jump_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Freehand_Jump_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers"], "secondary": ["Mollets"] }
+    },
+    {
+      "id": "deadlift",
+      "name": "Soulevé de terre",
+      "category": "ischio",
+      "equipment": "barre",
+      "variants": ["Soulevé conventionnel", "Soulevé sumo", "Trap bar deadlift"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/1.jpg",
+      "muscles": { "primary": ["Ischio-jambiers", "Fessiers", "Lombaires"], "secondary": ["Quadriceps", "Trapèzes"] }
+    },
+    {
+      "id": "rdl",
+      "name": "Soulevé roumain",
+      "category": "ischio",
+      "equipment": "barre",
+      "variants": ["Soulevé roumain barre", "Soulevé roumain haltères", "Soulevé roumain unilatéral"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/1.jpg",
+      "muscles": { "primary": ["Ischio-jambiers", "Fessiers"], "secondary": ["Lombaires"] }
+    },
+    {
+      "id": "good_morning",
+      "name": "Good morning",
+      "category": "ischio",
+      "equipment": "barre",
+      "variants": ["Good morning barre", "Good morning PDC"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Good_Morning/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Good_Morning/1.jpg",
+      "muscles": { "primary": ["Ischio-jambiers", "Lombaires"], "secondary": ["Fessiers"] }
+    },
+    {
+      "id": "leg_curl",
+      "name": "Leg curl",
+      "category": "ischio",
+      "equipment": "machine",
+      "variants": ["Leg curl allongé", "Leg curl assis", "Leg curl debout"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/1.jpg",
+      "muscles": { "primary": ["Ischio-jambiers"], "secondary": ["Mollets"] }
+    },
+    {
+      "id": "nordic_curl",
+      "name": "Nordic curl",
+      "category": "ischio",
+      "equipment": "pdc",
+      "variants": ["Nordic curl assisté", "Nordic curl complet"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Floor_Glute-Ham_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Floor_Glute-Ham_Raise/1.jpg",
+      "muscles": { "primary": ["Ischio-jambiers"], "secondary": ["Fessiers"] }
+    },
+    {
+      "id": "hip_thrust",
+      "name": "Hip thrust",
+      "category": "fessiers",
+      "equipment": "barre",
+      "variants": ["Hip thrust barre", "Hip thrust haltère", "Hip thrust unilatéral"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/1.jpg",
+      "muscles": { "primary": ["Fessiers"], "secondary": ["Ischio-jambiers", "Quadriceps"] }
+    },
+    {
+      "id": "glute_bridge",
+      "name": "Pont fessier",
+      "category": "fessiers",
+      "equipment": "pdc",
+      "variants": ["Pont fessier", "Pont fessier unilatéral", "Pont fessier avec pause"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/1.jpg",
+      "muscles": { "primary": ["Fessiers"], "secondary": ["Ischio-jambiers", "Core"] }
+    },
+    {
+      "id": "clamshell",
+      "name": "Clamshell",
+      "category": "fessiers",
+      "equipment": "pdc",
+      "variants": ["Clamshell", "Clamshell avec élastique"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Clam/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Clam/1.jpg",
+      "muscles": { "primary": ["Moyen fessier"], "secondary": ["Petit fessier"] }
+    },
+    {
+      "id": "sumo_squat",
+      "name": "Sumo squat",
+      "category": "adducteurs",
+      "equipment": "haltères",
+      "variants": ["Sumo squat haltère", "Sumo squat PDC", "Sumo squat goblet"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Adducteurs", "Fessiers"], "secondary": ["Ischio-jambiers"] }
+    },
+    {
+      "id": "calf_standing",
+      "name": "Mollets debout",
+      "category": "mollets",
+      "equipment": "machine",
+      "variants": ["Mollets machine", "Mollets Smith", "Mollets sur marche"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/1.jpg",
+      "muscles": { "primary": ["Gastrocnémiens"], "secondary": ["Soléaire"] }
+    },
+    {
+      "id": "calf_seated",
+      "name": "Mollets assis",
+      "category": "mollets",
+      "equipment": "machine",
+      "variants": ["Mollets assis machine", "Mollets assis avec poids"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/1.jpg",
+      "muscles": { "primary": ["Soléaire"], "secondary": ["Gastrocnémiens"] }
+    }
+  ],
+  "programs": {
+    "force": {
+      "id": "force",
+      "name": "Force",
+      "icon": "🔥",
+      "description": "Charges lourdes, 4-6 reps",
+      "restTime": 120,
+      "workouts": {
+        "upperA": {
+          "id": "upperA",
+          "name": "Upper A - Force Push",
+          "exercises": [
+            { "id": "bench", "name": "Développé couché", "variants": ["Développé couché", "Développé incliné", "Floor press", "Développé haltères"], "sets": 5, "reps": "4-6", "defaultWeight": 70 },
+            { "id": "row", "name": "Rowing barre", "variants": ["Rowing barre", "Rowing Pendlay", "Rowing T-bar", "Rowing haltère"], "sets": 5, "reps": "4-6", "defaultWeight": 60 },
+            { "id": "ohp", "name": "Développé militaire", "variants": ["Développé militaire", "Push press", "Développé haltères", "Développé Arnold"], "sets": 4, "reps": "5-6", "defaultWeight": 45 },
+            { "id": "arms", "name": "Curl barre + Dips", "sets": 3, "reps": "6-8", "defaultWeight": 30, "biset": { "id": "dips", "name": "Dips lestés", "sets": 3, "reps": "6-8", "defaultWeight": 10 } }
+          ]
+        },
+        "upperB": {
+          "id": "upperB",
+          "name": "Upper B - Force Pull",
+          "exercises": [
+            { "id": "pullups", "name": "Tractions lestées", "variants": ["Tractions pronation", "Tractions supination", "Tractions neutres", "Tractions larges"], "sets": 5, "reps": "4-6", "defaultWeight": 10 },
+            { "id": "incline", "name": "Développé incliné", "variants": ["Développé incliné barre", "Développé incliné haltères", "Développé décliné"], "sets": 4, "reps": "5-6", "defaultWeight": 55 },
+            { "id": "dbrow", "name": "Rowing haltère lourd", "variants": ["Rowing haltère", "Rowing Meadows", "Rowing bilatéral"], "sets": 4, "reps": "5-6", "defaultWeight": 36 },
+            { "id": "face", "name": "Face pull + Extension triceps", "sets": 3, "reps": "8-10", "defaultWeight": 0, "biset": { "id": "tricep", "name": "Barre au front", "sets": 3, "reps": "6-8", "defaultWeight": 25 } }
+          ]
+        },
+        "lowerA": {
+          "id": "lowerA",
+          "name": "Lower A - Force Squat",
+          "exercises": [
+            { "id": "squat", "name": "Squat barre", "variants": ["Squat barre", "Squat pause", "Squat avant", "Squat box"], "sets": 5, "reps": "4-6", "defaultWeight": 90 },
+            { "id": "rdl", "name": "Soulevé roumain", "variants": ["Soulevé roumain barre", "Soulevé roumain haltères"], "sets": 4, "reps": "5-6", "defaultWeight": 70 },
+            { "id": "legpress", "name": "Presse à cuisses", "variants": ["Presse classique", "Hack squat", "Presse unilatérale"], "sets": 4, "reps": "6-8", "defaultWeight": 100 },
+            { "id": "calf", "name": "Mollets debout", "variants": ["Mollets machine", "Mollets sur marche"], "sets": 4, "reps": "8-10", "defaultWeight": 50 }
+          ]
+        },
+        "lowerB": {
+          "id": "lowerB",
+          "name": "Lower B - Force Deadlift",
+          "exercises": [
+            { "id": "deadlift", "name": "Soulevé de terre", "variants": ["Soulevé conventionnel", "Soulevé sumo", "Trap bar deadlift", "Deficit deadlift"], "sets": 5, "reps": "3-5", "defaultWeight": 110 },
+            { "id": "frontsquat", "name": "Squat avant", "variants": ["Squat avant", "Goblet squat lourd"], "sets": 4, "reps": "5-6", "defaultWeight": 60 },
+            { "id": "bulgare", "name": "Squat bulgare", "variants": ["Squat bulgare haltères", "Squat bulgare barre"], "sets": 3, "reps": "6-8", "defaultWeight": 20 },
+            { "id": "calfseated", "name": "Mollets assis", "variants": ["Mollets assis machine", "Mollets assis avec poids"], "sets": 4, "reps": "10-12", "defaultWeight": 30 }
+          ]
+        }
+      }
+    }
+  }
+}

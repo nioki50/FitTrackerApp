@@ -247,32 +247,91 @@ export const CROSSFIT_WODS = {
 };
 
 export const BODYWEIGHT_EXERCISES = {
+  // Pectoraux
   'Développé couché': 'Pompes',
-  'Développé incliné': 'Pompes déclinées',
+  'Développé incliné': 'Pompes déclinées (pieds surélevés)',
+  'Développé incliné barre': 'Pompes déclinées',
+  'Développé incliné haltères': 'Pompes pieds surélevés',
   'Développé haltères': 'Pompes larges',
   'Floor press': 'Pompes serrées',
-  'Rowing barre': 'Rowing inversé (table)',
-  'Rowing haltères': 'Rowing serviette',
-  'Tractions': 'Tractions porte',
-  'Tractions pronation': 'Tractions porte',
-  'Tractions supination': 'Chin-ups porte',
+  'Écarté poulie / haltères': 'Pompes larges tempo lent',
+  'Écarté couché': 'Pompes larges avec pause',
+
+  // Dos
+  'Rowing barre': 'Rowing inversé (sous table ou barre)',
+  'Rowing haltères': 'Rowing inversé prise serrée',
+  'Rowing haltère': 'Rowing inversé unilatéral',
+  'Rowing haltère lourd': 'Rowing inversé avec sac à dos',
+  'Rowing Pendlay': 'Rowing inversé explosif',
+  'Rowing T-bar': 'Rowing inversé prise large',
+  'Tractions': 'Tractions (barre de porte ou parc)',
+  'Tractions lestées': 'Tractions avec sac à dos',
+  'Tractions pronation': 'Tractions prise large',
+  'Tractions supination': 'Chin-ups (prise supination)',
+  'Tractions neutres': 'Tractions prise neutre',
+  'Tirage vertical': 'Tractions assistées (élastique ou chaise)',
+  'Tirage neutre': 'Tractions prise neutre',
+  'Face pull': 'Face pull avec serviette (porte)',
+  'Shrugs': 'Shrugs isométriques',
+
+  // Épaules
   'Développé militaire': 'Pike push-ups',
   'Développé épaules': 'Pike push-ups',
-  'Élévations latérales': 'Cercles de bras',
-  'Dips': 'Dips sur chaise',
-  'Dips lestés': 'Dips sur chaise',
-  'Curl barre': 'Curl serviette',
-  'Curl marteau': 'Curl isométrique',
+  'Développé haltères épaules': 'Pike push-ups pieds surélevés',
+  'Push press': 'Pike push-ups explosifs',
+  'Développé Arnold': 'Pike push-ups avec rotation',
+  'Élévations latérales': 'Élévations latérales bras tendus (contre mur)',
+  'Élévations frontales': 'Élévations frontales PDC',
+  'Oiseau': 'Reverse fly allongé sur le ventre',
+
+  // Bras
+  'Dips': 'Dips sur chaise ou entre 2 chaises',
+  'Dips lestés': 'Dips sur chaise avec sac à dos',
+  'Curl barre': 'Curl isométrique avec serviette',
+  'Curl marteau': 'Curl isométrique contre mur',
+  'Curl incliné': 'Curl concentration PDC',
   'Extension triceps': 'Diamond push-ups',
-  'Squat barre': 'Squats sautés',
+  'Barre au front': 'Extensions triceps au sol',
+  'Pushdown corde': 'Diamond push-ups ou dips serrés',
+  'Kickback triceps': 'Triceps dips au sol',
+
+  // Quadriceps
+  'Squat barre': 'Squats sautés ou pistol squat assisté',
   'Squat avant': 'Sissy squat',
-  'Goblet squat': 'Squat sumo PDC',
-  'Fentes': 'Fentes alternées',
-  'Fentes marchées': 'Fentes sautées',
+  'Squat pause': 'Squat isométrique (chaise invisible)',
+  'Goblet squat': 'Squat sumo PDC profond',
   'Squat bulgare': 'Squat bulgare PDC',
-  'Soulevé de terre': 'Soulevé unipodal PDC',
-  'Soulevé roumain': 'Good morning PDC',
+  'Squat hack': 'Sissy squat',
+  'Fentes': 'Fentes alternées PDC',
+  'Fentes marchées': 'Fentes sautées alternées',
+  'Fentes arrière': 'Fentes arrière PDC',
+  'Fentes latérales': 'Fentes latérales PDC',
+  'Presse à cuisses': 'Squats profonds PDC',
+  'Presse à cuisses / Hack squat': 'Sissy squat ou squats sautés',
+  'Extension quadriceps': 'Sissy squat ou extensions jambe assis (sans machine)',
+  'Leg curl': 'Nordic curl assisté ou leg curl au sol avec serviette',
+  'Leg curl élastique': 'Nordic curl ou glute-ham raise au sol',
+
+  // Ischio-jambiers / Fessiers
+  'Soulevé de terre': 'Good morning PDC',
+  'Soulevé conventionnel': 'Good morning PDC',
+  'Soulevé sumo': 'Sumo squat PDC profond',
+  'Soulevé roumain': 'Single leg deadlift PDC',
+  'Soulevé jambes tendues': 'Good morning jambes tendues PDC',
   'Hip thrust': 'Pont fessier',
-  'Mollets': 'Mollets sur marche',
-  'default': 'Exercice au poids de corps'
+  'Hip thrust barre': 'Pont fessier unilatéral',
+  'Pont fessier': 'Pont fessier PDC',
+  'Pont fessier unilatéral': 'Single leg glute bridge',
+  'Abducteurs': 'Clamshells ou abductions latérales au sol',
+  'Adducteurs': 'Adductions au sol ou sumo squat PDC',
+  'Sumo squat': 'Sumo squat PDC',
+  'Sumo squat haltère': 'Sumo squat PDC profond',
+
+  // Mollets
+  'Mollets': 'Mollets sur marche d\'escalier',
+  'Mollets debout': 'Mollets sur marche d\'escalier',
+  'Mollets assis': 'Mollets assis (poids sur genoux optionnel)',
+
+  // Default
+  'default': 'Version poids de corps adaptée'
 };
