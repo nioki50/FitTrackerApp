@@ -9,11 +9,11 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, borderRadius } from '../theme/colors';
 import { Button, ExerciseItem, Card } from '../components';
-import { PROGRAMS } from '../data/programs';
+import { PROGRAMS, BODYWEIGHT_EXERCISES } from '../data/programs';
 import { saveSession, getCycle, saveCycle, saveExerciseWeight } from '../services/storage';
 
 export const WorkoutScreen = ({ navigation, route }) => {
-  const { cycle } = route.params || {};
+  const { cycle, workoutMode = 'gym' } = route.params || {};
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [exercises, setExercises] = useState([]);
   const [completedExercises, setCompletedExercises] = useState([]);
@@ -21,6 +21,7 @@ export const WorkoutScreen = ({ navigation, route }) => {
   const [showWarmup, setShowWarmup] = useState(true);
   const timerRef = useRef(null);
   const startTimeRef = useRef(null);
+  const isBodyweight = workoutMode === 'bodyweight';
 
   useEffect(() => {
     if (cycle) {
@@ -32,6 +33,29 @@ export const WorkoutScreen = ({ navigation, route }) => {
     };
   }, [cycle]);
 
+  const convertToBodyweight = (exercise) => {
+    const bwName = BODYWEIGHT_EXERCISES[exercise.name] || exercise.name;
+    const converted = {
+      ...exercise,
+      name: bwName,
+      originalName: exercise.name,
+      defaultWeight: 0, // Poids du corps = 0
+    };
+
+    // Convertir aussi le biset si présent
+    if (exercise.biset) {
+      const bwBisetName = BODYWEIGHT_EXERCISES[exercise.biset.name] || exercise.biset.name;
+      converted.biset = {
+        ...exercise.biset,
+        name: bwBisetName,
+        originalName: exercise.biset.name,
+        defaultWeight: 0,
+      };
+    }
+
+    return converted;
+  };
+
   const loadWorkout = () => {
     const program = PROGRAMS[cycle.programId];
     if (!program) return;
@@ -42,7 +66,13 @@ export const WorkoutScreen = ({ navigation, route }) => {
     const workout = program.workouts[workoutKey];
 
     setCurrentWorkout(workout);
-    setExercises(workout.exercises);
+
+    // Convertir en poids du corps si mode voyage
+    const workoutExercises = isBodyweight
+      ? workout.exercises.map(convertToBodyweight)
+      : workout.exercises;
+
+    setExercises(workoutExercises);
   };
 
   const startTimer = () => {
@@ -100,6 +130,7 @@ export const WorkoutScreen = ({ navigation, route }) => {
               volume: totalVolume,
               exercisesCompleted: completedExercises.length,
               totalExercises: exercises.length,
+              workoutMode: workoutMode,
             };
 
             await saveSession(session);
@@ -154,7 +185,12 @@ export const WorkoutScreen = ({ navigation, route }) => {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.header}>
         <Text style={styles.title}>{currentWorkout.name}</Text>
-        <Text style={styles.subtitle}>Séance en cours</Text>
+        <View style={styles.modeIndicator}>
+          <Text style={styles.modeIcon}>{isBodyweight ? '✈️' : '🏋️'}</Text>
+          <Text style={styles.subtitle}>
+            {isBodyweight ? 'Mode Voyage (poids du corps)' : 'Mode Salle de sport'}
+          </Text>
+        </View>
       </View>
 
       {showWarmup && (
@@ -232,9 +268,21 @@ const styles = StyleSheet.create({
     color: colors.accentPrimary,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: colors.textSecondary,
-    marginTop: spacing.xs,
+  },
+  modeIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: spacing.sm,
+    backgroundColor: colors.bgTertiary,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: 20,
+  },
+  modeIcon: {
+    fontSize: 16,
+    marginRight: spacing.xs,
   },
   warmupCard: {
     backgroundColor: '#ff9a56',

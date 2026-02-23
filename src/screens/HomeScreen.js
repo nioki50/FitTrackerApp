@@ -5,12 +5,14 @@ import {
   StyleSheet,
   ScrollView,
   RefreshControl,
+  Modal,
+  TouchableOpacity,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing } from '../theme/colors';
 import { Button, StatsGrid, StatCard, CycleCard, Card, CardHeader } from '../components';
-import { getCycle, getSessions, getSettings } from '../services/storage';
+import { getCycle, getSessions, getSettings, getCardioSessions } from '../services/storage';
 import { checkForUpdates } from '../services/updates';
 
 export const HomeScreen = ({ navigation }) => {
@@ -24,15 +26,22 @@ export const HomeScreen = ({ navigation }) => {
   const [recentSessions, setRecentSessions] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const [settings, setSettings] = useState(null);
+  const [showModeModal, setShowModeModal] = useState(false);
 
   const loadData = async () => {
     const cycleData = await getCycle();
-    const sessions = await getSessions();
+    const muscleSessions = await getSessions();
+    const cardioSessions = await getCardioSessions();
     const settingsData = await getSettings();
+
+    // Fusionner toutes les sessions et trier par date
+    const allSessions = [...muscleSessions, ...cardioSessions].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
 
     setCycle(cycleData);
     setSettings(settingsData);
-    setRecentSessions(sessions.slice(0, 3));
+    setRecentSessions(allSessions.slice(0, 3));
 
     // Calculer les stats
     const now = new Date();
@@ -40,14 +49,14 @@ export const HomeScreen = ({ navigation }) => {
     weekStart.setDate(now.getDate() - now.getDay());
     weekStart.setHours(0, 0, 0, 0);
 
-    const weekSessions = sessions.filter(s => new Date(s.date) >= weekStart);
+    const weekSessions = allSessions.filter(s => new Date(s.date) >= weekStart);
     const weekVolume = weekSessions.reduce((sum, s) => sum + (s.volume || 0), 0);
 
     setStats({
       weekSessions: weekSessions.length,
       totalVolume: weekVolume,
-      totalSessions: sessions.length,
-      streak: calculateStreak(sessions),
+      totalSessions: allSessions.length,
+      streak: calculateStreak(allSessions),
     });
   };
 
@@ -111,10 +120,15 @@ export const HomeScreen = ({ navigation }) => {
 
   const startWorkout = () => {
     if (cycle) {
-      navigation.navigate('Workout', { cycle });
+      setShowModeModal(true);
     } else {
       navigation.navigate('ProgramSelect');
     }
+  };
+
+  const selectMode = (mode) => {
+    setShowModeModal(false);
+    navigation.navigate('Workout', { cycle, workoutMode: mode });
   };
 
   const formatDate = (dateString) => {
@@ -200,16 +214,32 @@ export const HomeScreen = ({ navigation }) => {
           recentSessions.map((session, index) => (
             <View key={index} style={styles.sessionItem}>
               <Text style={styles.sessionDate}>{formatDate(session.date)}</Text>
-              <Text style={styles.sessionTitle}>{session.name}</Text>
+              <View style={styles.sessionHeader}>
+                <Ionicons
+                  name={session.type === 'cardio' ? 'pulse' : 'barbell'}
+                  size={16}
+                  color={session.type === 'cardio' ? colors.accentTertiary : colors.accentPrimary}
+                />
+                <Text style={styles.sessionTitle}>{session.name}</Text>
+              </View>
               <View style={styles.sessionStats}>
                 <Text style={styles.sessionStat}>
                   <Ionicons name="time-outline" size={14} color={colors.textSecondary} />
-                  {' '}{session.duration}
+                  {' '}{session.duration}{session.type === 'cardio' ? ' min' : ''}
                 </Text>
-                <Text style={styles.sessionStat}>
-                  <Ionicons name="barbell-outline" size={14} color={colors.textSecondary} />
-                  {' '}{session.volume?.toLocaleString() || 0} kg
-                </Text>
+                {session.type === 'cardio' ? (
+                  session.distance > 0 && (
+                    <Text style={styles.sessionStat}>
+                      <Ionicons name="map-outline" size={14} color={colors.textSecondary} />
+                      {' '}{session.distance} km
+                    </Text>
+                  )
+                ) : (
+                  <Text style={styles.sessionStat}>
+                    <Ionicons name="barbell-outline" size={14} color={colors.textSecondary} />
+                    {' '}{session.volume?.toLocaleString() || 0} kg
+                  </Text>
+                )}
               </View>
             </View>
           ))
@@ -224,6 +254,49 @@ export const HomeScreen = ({ navigation }) => {
           <Text style={styles.footerLink}>nioki50</Text>
         </Text>
       </View>
+
+      <Modal
+        visible={showModeModal}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setShowModeModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Mode d'entraînement</Text>
+            <Text style={styles.modalSubtitle}>Où vas-tu t'entraîner ?</Text>
+
+            <TouchableOpacity
+              style={styles.modeOption}
+              onPress={() => selectMode('gym')}
+            >
+              <Text style={styles.modeIcon}>🏋️</Text>
+              <View style={styles.modeText}>
+                <Text style={styles.modeTitle}>Salle de sport</Text>
+                <Text style={styles.modeDesc}>Équipement complet (barres, machines, haltères)</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.modeOption}
+              onPress={() => selectMode('bodyweight')}
+            >
+              <Text style={styles.modeIcon}>✈️</Text>
+              <View style={styles.modeText}>
+                <Text style={styles.modeTitle}>Voyage / Maison</Text>
+                <Text style={styles.modeDesc}>Exercices au poids du corps uniquement</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.cancelButton}
+              onPress={() => setShowModeModal(false)}
+            >
+              <Text style={styles.cancelText}>Annuler</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
@@ -299,11 +372,16 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     marginBottom: spacing.xs,
   },
+  sessionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginBottom: spacing.sm,
+  },
   sessionTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: colors.textPrimary,
-    marginBottom: spacing.sm,
   },
   sessionStats: {
     flexDirection: 'row',
@@ -329,5 +407,66 @@ const styles = StyleSheet.create({
   },
   footerLink: {
     color: colors.accentTertiary,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.xl,
+  },
+  modalContent: {
+    backgroundColor: colors.bgSecondary,
+    borderRadius: 16,
+    padding: spacing.xl,
+    width: '100%',
+    maxWidth: 400,
+  },
+  modalTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: colors.accentPrimary,
+    textAlign: 'center',
+    marginBottom: spacing.xs,
+  },
+  modalSubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    marginBottom: spacing.xl,
+  },
+  modeOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.bgTertiary,
+    borderRadius: 12,
+    padding: spacing.lg,
+    marginBottom: spacing.md,
+  },
+  modeIcon: {
+    fontSize: 32,
+    marginRight: spacing.lg,
+  },
+  modeText: {
+    flex: 1,
+  },
+  modeTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  modeDesc: {
+    fontSize: 12,
+    color: colors.textMuted,
+  },
+  cancelButton: {
+    marginTop: spacing.md,
+    padding: spacing.md,
+    alignItems: 'center',
+  },
+  cancelText: {
+    fontSize: 14,
+    color: colors.textSecondary,
   },
 });

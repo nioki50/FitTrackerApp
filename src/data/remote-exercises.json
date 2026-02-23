@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "lastUpdated": "2026-02-18",
+  "version": "2.3.0",
+  "lastUpdated": "2026-02-23",
   "bodyweightAlternatives": {
     "Développé couché": "Pompes",
     "Développé incliné": "Pompes déclinées (pieds surélevés)",
@@ -489,6 +489,246 @@
       "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg",
       "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/1.jpg",
       "muscles": { "primary": ["Soléaire"], "secondary": ["Gastrocnémiens"] }
+    },
+    {
+      "id": "tbar_row",
+      "name": "Rowing T-bar",
+      "category": "dos",
+      "equipment": "barre",
+      "variants": ["Rowing T-bar classique", "Rowing T-bar prise large"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_T-Bar_Row/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_T-Bar_Row/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Trapèzes"], "secondary": ["Biceps", "Rhomboïdes"] }
+    },
+    {
+      "id": "tirage_neutre",
+      "name": "Tirage neutre",
+      "category": "dos",
+      "equipment": "poulie",
+      "variants": ["Tirage neutre", "Tirage serré"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/1.jpg",
+      "muscles": { "primary": ["Dorsaux"], "secondary": ["Biceps", "Rhomboïdes"] }
+    },
+    {
+      "id": "front_squat",
+      "name": "Front Squat",
+      "category": "quadriceps",
+      "equipment": "barre",
+      "variants": ["Front Squat", "Squat avant"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps"], "secondary": ["Fessiers", "Core"] }
+    },
+    {
+      "id": "squat_hack",
+      "name": "Squat hack",
+      "category": "quadriceps",
+      "equipment": "machine",
+      "variants": ["Squat hack", "Hack squat"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hack_Squat/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hack_Squat/1.jpg",
+      "muscles": { "primary": ["Quadriceps"], "secondary": ["Fessiers", "Ischio-jambiers"] }
+    },
+    {
+      "id": "fentes_arriere",
+      "name": "Fentes arrière",
+      "category": "quadriceps",
+      "equipment": "haltères",
+      "variants": ["Fentes arrière", "Reverse lunge"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Rear_Lunge/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Rear_Lunge/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers"], "secondary": ["Ischio-jambiers"] }
+    },
+    {
+      "id": "fentes_laterales",
+      "name": "Fentes latérales",
+      "category": "quadriceps",
+      "equipment": "haltères",
+      "variants": ["Fentes latérales", "Side lunge"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lunge/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lunge/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Adducteurs"], "secondary": ["Fessiers"] }
+    },
+    {
+      "id": "trap_bar",
+      "name": "Trap bar deadlift",
+      "category": "ischio",
+      "equipment": "trap bar",
+      "variants": ["Trap bar deadlift", "Hex bar deadlift"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Trap_Bar_Deadlift/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Trap_Bar_Deadlift/1.jpg",
+      "muscles": { "primary": ["Quadriceps", "Fessiers", "Ischio-jambiers"], "secondary": ["Trapèzes", "Lombaires"] }
+    },
+    {
+      "id": "wod",
+      "name": "WOD",
+      "category": "crossfit",
+      "equipment": "varié",
+      "variants": ["AMRAP", "For Time", "EMOM"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Burpee/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Burpee/1.jpg",
+      "muscles": { "primary": ["Corps entier"], "secondary": [] }
+    },
+    {
+      "id": "australian_pullups",
+      "name": "Australian pull-ups",
+      "category": "calisthenics",
+      "equipment": "barre",
+      "variants": ["Australian pull-ups", "Rowing inversé"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Trapèzes"], "secondary": ["Biceps"] }
+    },
+    {
+      "id": "archer_pullups",
+      "name": "Archer pull-ups",
+      "category": "calisthenics",
+      "equipment": "barre",
+      "variants": ["Archer pull-ups", "One arm pull-up progressions"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/1.jpg",
+      "muscles": { "primary": ["Dorsaux"], "secondary": ["Biceps", "Avant-bras"] }
+    },
+    {
+      "id": "lsit_pullups",
+      "name": "L-sit pull-ups",
+      "category": "calisthenics",
+      "equipment": "barre",
+      "variants": ["L-sit pull-ups", "Tuck L-sit pull-ups"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Abdominaux"], "secondary": ["Biceps"] }
+    },
+    {
+      "id": "archer_pushups",
+      "name": "Archer push-ups",
+      "category": "calisthenics",
+      "equipment": "pdc",
+      "variants": ["Archer push-ups", "One arm push-up progressions"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Push-Up/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Push-Up/1.jpg",
+      "muscles": { "primary": ["Pectoraux", "Triceps"], "secondary": ["Deltoïdes"] }
+    },
+    {
+      "id": "pseudo_planche",
+      "name": "Pseudo planche push-ups",
+      "category": "calisthenics",
+      "equipment": "pdc",
+      "variants": ["Pseudo planche push-ups", "Planche lean"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/1.jpg",
+      "muscles": { "primary": ["Deltoïdes antérieurs", "Pectoraux"], "secondary": ["Triceps", "Core"] }
+    },
+    {
+      "id": "lsit",
+      "name": "L-sit",
+      "category": "calisthenics",
+      "equipment": "parallettes",
+      "variants": ["L-sit", "Tuck L-sit", "V-sit"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/1.jpg",
+      "muscles": { "primary": ["Abdominaux", "Fléchisseurs de hanche"], "secondary": ["Triceps"] }
+    },
+    {
+      "id": "hollow_body",
+      "name": "Hollow body hold",
+      "category": "calisthenics",
+      "equipment": "pdc",
+      "variants": ["Hollow body hold", "Hollow body rocks"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/1.jpg",
+      "muscles": { "primary": ["Abdominaux"], "secondary": ["Fléchisseurs de hanche"] }
+    },
+    {
+      "id": "skin_the_cat",
+      "name": "Skin the cat",
+      "category": "calisthenics",
+      "equipment": "anneaux",
+      "variants": ["Skin the cat", "German hang"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Abdominaux"], "secondary": ["Deltoïdes", "Biceps"] }
+    },
+    {
+      "id": "front_lever",
+      "name": "Front lever raises",
+      "category": "calisthenics",
+      "equipment": "barre",
+      "variants": ["Front lever raises", "Tuck front lever", "Straddle front lever"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/1.jpg",
+      "muscles": { "primary": ["Dorsaux", "Abdominaux"], "secondary": ["Biceps"] }
+    },
+    {
+      "id": "back_lever",
+      "name": "Back lever",
+      "category": "calisthenics",
+      "equipment": "anneaux",
+      "variants": ["Back lever", "Tuck back lever", "German hang"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/1.jpg",
+      "muscles": { "primary": ["Biceps", "Deltoïdes"], "secondary": ["Dorsaux", "Core"] }
+    },
+    {
+      "id": "nordic_curl",
+      "name": "Nordic curl",
+      "category": "calisthenics",
+      "equipment": "pdc",
+      "variants": ["Nordic curl", "Nordic curl assisté"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Floor_Glute-Ham_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Floor_Glute-Ham_Raise/1.jpg",
+      "muscles": { "primary": ["Ischio-jambiers"], "secondary": ["Fessiers"] }
+    },
+    {
+      "id": "dragon_flag",
+      "name": "Dragon flag",
+      "category": "calisthenics",
+      "equipment": "banc",
+      "variants": ["Dragon flag", "Tuck dragon flag"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/1.jpg",
+      "muscles": { "primary": ["Abdominaux"], "secondary": ["Dorsaux"] }
+    },
+    {
+      "id": "handstand",
+      "name": "Handstand hold",
+      "category": "calisthenics",
+      "equipment": "mur",
+      "variants": ["Handstand hold", "Freestanding handstand"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Handstand_Push-Ups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Handstand_Push-Ups/1.jpg",
+      "muscles": { "primary": ["Deltoïdes", "Trapèzes"], "secondary": ["Triceps", "Core"] }
+    },
+    {
+      "id": "ring_dips",
+      "name": "Dips aux anneaux",
+      "category": "calisthenics",
+      "equipment": "anneaux",
+      "variants": ["Dips aux anneaux", "Ring turn out dips"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/1.jpg",
+      "muscles": { "primary": ["Triceps", "Pectoraux"], "secondary": ["Deltoïdes", "Core"] }
+    },
+    {
+      "id": "ring_support",
+      "name": "Support aux anneaux",
+      "category": "calisthenics",
+      "equipment": "anneaux",
+      "variants": ["Support aux anneaux", "Ring turn out hold"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/1.jpg",
+      "muscles": { "primary": ["Triceps", "Deltoïdes"], "secondary": ["Core"] }
+    },
+    {
+      "id": "planche_lean",
+      "name": "Planche lean",
+      "category": "calisthenics",
+      "equipment": "pdc",
+      "variants": ["Planche lean", "Tuck planche"],
+      "image": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+      "image2": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/1.jpg",
+      "muscles": { "primary": ["Deltoïdes antérieurs"], "secondary": ["Pectoraux", "Core", "Biceps"] }
     }
   ],
   "programs": {

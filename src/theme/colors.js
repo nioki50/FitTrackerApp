@@ -30,6 +30,7 @@ export const colors = {
     volume: ['#11998e', '#38ef7d'],
     fullbody: ['#fc4a1a', '#f7b733'],
     crossfit: ['#00b4db', '#0083b0'],
+    calisthenics: ['#8e44ad', '#3498db'],
   },
 };
 

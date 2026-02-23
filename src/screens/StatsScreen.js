@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, borderRadius } from '../theme/colors';
 import { StatsGrid, StatCard, Card, CardHeader } from '../components';
-import { getSessions } from '../services/storage';
+import { getSessions, getCardioSessions } from '../services/storage';
 
 export const StatsScreen = ({ navigation }) => {
   const [sessions, setSessions] = useState([]);
@@ -20,27 +20,41 @@ export const StatsScreen = ({ navigation }) => {
     totalTime: 0,
     cardioCount: 0,
     crossfitCount: 0,
+    totalCardioDistance: 0,
+    totalCardioTime: 0,
   });
   const [refreshing, setRefreshing] = useState(false);
 
   const loadData = async () => {
-    const allSessions = await getSessions();
+    // Récupérer les deux sources de données
+    const muscleSessions = await getSessions();
+    const cardioSessionsData = await getCardioSessions();
+
+    // Fusionner et trier par date décroissante
+    const allSessions = [...muscleSessions, ...cardioSessionsData].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
     setSessions(allSessions);
 
     // Calculer les stats
-    const musculationSessions = allSessions.filter(s => !s.type || s.type === 'musculation');
-    const cardioSessions = allSessions.filter(s => s.type === 'cardio');
-    const crossfitSessions = allSessions.filter(s => s.type === 'crossfit');
+    const musculationSessions = muscleSessions.filter(s => !s.type || s.type === 'musculation');
+    const crossfitSessions = muscleSessions.filter(s => s.type === 'crossfit');
 
     const totalVolume = musculationSessions.reduce((sum, s) => sum + (s.volume || 0), 0);
-    const totalTime = allSessions.reduce((sum, s) => sum + (s.durationSeconds || 0), 0);
+    const totalTime = allSessions.reduce((sum, s) => sum + (s.durationSeconds || s.duration || 0), 0);
+
+    // Stats cardio
+    const totalCardioDistance = cardioSessionsData.reduce((sum, s) => sum + (parseFloat(s.distance) || 0), 0);
+    const totalCardioTime = cardioSessionsData.reduce((sum, s) => sum + (parseInt(s.duration) || 0), 0);
 
     setStats({
       totalSessions: musculationSessions.length,
       totalVolume: Math.round(totalVolume / 1000), // En tonnes
-      totalTime: Math.round(totalTime / 3600), // En heures
-      cardioCount: cardioSessions.length,
+      totalTime: Math.round(totalTime / 60), // En heures (cardio est en minutes)
+      cardioCount: cardioSessionsData.length,
       crossfitCount: crossfitSessions.length,
+      totalCardioDistance: Math.round(totalCardioDistance * 10) / 10, // Arrondi à 1 décimale
+      totalCardioTime: totalCardioTime, // En minutes
     });
   };
 
@@ -89,14 +103,15 @@ export const StatsScreen = ({ navigation }) => {
       </View>
 
       <StatsGrid>
-        <StatCard value={stats.totalSessions} label="Séances totales" />
+        <StatCard value={stats.totalSessions} label="Séances muscu" />
         <StatCard value={stats.totalVolume} label="Tonnes soulevées" />
-        <StatCard value={stats.totalTime} label="Heures d'entraînement" />
         <StatCard value={stats.cardioCount} label="Sorties cardio" />
+        <StatCard value={stats.totalCardioDistance} label="Km parcourus" />
       </StatsGrid>
 
       <View style={styles.extraStats}>
         <StatCard value={stats.crossfitCount} label="Séances CrossFit" />
+        <StatCard value={Math.round(stats.totalCardioTime / 60)} label="Heures de cardio" />
       </View>
 
       <Card>
@@ -169,6 +184,7 @@ const styles = StyleSheet.create({
   extraStats: {
     flexDirection: 'row',
     marginBottom: spacing.xl,
+    gap: spacing.md,
   },
   historyItem: {
     flexDirection: 'row',

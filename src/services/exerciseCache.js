@@ -11,7 +11,7 @@ const CACHE_KEYS = {
 const REMOTE_DATA_URL = 'https://raw.githubusercontent.com/nioki50/FitTrackerApp/main/src/data/remote-exercises.json';
 
 // Version actuelle des données locales (incrémentée à chaque MAJ)
-const CURRENT_DATA_VERSION = '2.0.0';
+const CURRENT_DATA_VERSION = '2.3.0';
 
 // Durée de validité du cache (24h en ms)
 const CACHE_DURATION = 24 * 60 * 60 * 1000;

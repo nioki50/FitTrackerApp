@@ -8,6 +8,9 @@ export const ExerciseItem = ({
   isActive = false,
   onPress,
 }) => {
+  // Détecte si c'est un exercice poids de corps (mode voyage)
+  const isBodyweight = exercise.originalName !== undefined;
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -16,22 +19,40 @@ export const ExerciseItem = ({
         styles.item,
         isCompleted && styles.itemCompleted,
         isActive && styles.itemActive,
+        isBodyweight && styles.itemBodyweight,
       ]}
     >
+      {isBodyweight && (
+        <View style={styles.bodyweightIcon}>
+          <Text style={styles.bodyweightEmoji}>🏠</Text>
+        </View>
+      )}
+
       <View style={styles.content}>
         <Text style={[styles.name, isCompleted && styles.nameCompleted]}>
           {exercise.name}
         </Text>
+
+        {isBodyweight && (
+          <Text style={styles.originalExercise}>
+            Remplace : {exercise.originalName}
+          </Text>
+        )}
+
         <Text style={styles.details}>
           {exercise.sets} séries x {exercise.reps} reps
+          {isBodyweight && ' • Poids du corps'}
         </Text>
 
         {exercise.biset && (
           <View style={styles.bisetContainer}>
-            <View style={styles.bisetBadge}>
-              <Text style={styles.bisetBadgeText}>BISET</Text>
+            <View style={[styles.bisetBadge, isBodyweight && styles.bisetBadgeBodyweight]}>
+              <Text style={styles.bisetBadgeText}>{isBodyweight ? 'BISET PDC' : 'BISET'}</Text>
             </View>
             <Text style={styles.bisetName}>{exercise.biset.name}</Text>
+            {exercise.biset.originalName && (
+              <Text style={styles.bisetOriginal}> (→ {exercise.biset.originalName})</Text>
+            )}
           </View>
         )}
       </View>
@@ -70,6 +91,23 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
   },
+  itemBodyweight: {
+    borderLeftWidth: 3,
+    borderLeftColor: '#4CAF50',
+    backgroundColor: 'rgba(76, 175, 80, 0.08)',
+  },
+  bodyweightIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: spacing.md,
+  },
+  bodyweightEmoji: {
+    fontSize: 18,
+  },
   content: {
     flex: 1,
   },
@@ -82,6 +120,12 @@ const styles = StyleSheet.create({
   nameCompleted: {
     textDecorationLine: 'line-through',
   },
+  originalExercise: {
+    fontSize: 11,
+    color: '#4CAF50',
+    marginBottom: spacing.xs,
+    fontStyle: 'italic',
+  },
   details: {
     fontSize: 14,
     color: colors.textSecondary,
@@ -89,6 +133,7 @@ const styles = StyleSheet.create({
   bisetContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    flexWrap: 'wrap',
     marginTop: spacing.sm,
     paddingTop: spacing.sm,
     borderTopWidth: 1,
@@ -102,6 +147,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: spacing.sm,
   },
+  bisetBadgeBodyweight: {
+    backgroundColor: '#4CAF50',
+  },
   bisetBadgeText: {
     color: 'white',
     fontSize: 10,
@@ -110,6 +158,11 @@ const styles = StyleSheet.create({
   bisetName: {
     fontSize: 14,
     color: colors.textSecondary,
+  },
+  bisetOriginal: {
+    fontSize: 11,
+    color: '#4CAF50',
+    fontStyle: 'italic',
   },
   checkmark: {
     width: 28,

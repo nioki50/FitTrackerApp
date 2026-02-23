@@ -225,6 +225,52 @@ export const PROGRAMS = {
         ]
       }
     }
+  },
+  calisthenics: {
+    id: 'calisthenics',
+    name: 'Callisthénie',
+    icon: '🤸',
+    description: 'Progressions poids du corps',
+    gradient: 'calisthenics',
+    restTime: 90,
+    workouts: {
+      fbA: {
+        id: 'fbA',
+        name: 'Full Body A - Push Focus',
+        exercises: [
+          { id: 'pushups', name: 'Pompes', variants: ['Pompes', 'Pompes larges', 'Archer push-ups', 'Diamond push-ups'], sets: 4, reps: '8-12', defaultWeight: 0 },
+          { id: 'pullups', name: 'Tractions', variants: ['Tractions pronation', 'Tractions supination', 'Australian pull-ups'], sets: 4, reps: '5-10', defaultWeight: 0 },
+          { id: 'dips', name: 'Dips', variants: ['Dips', 'Dips sur chaise', 'Dips aux anneaux'], sets: 3, reps: '8-12', defaultWeight: 0 },
+          { id: 'pike', name: 'Pike push-ups', variants: ['Pike push-ups', 'Handstand hold', 'HSPU'], sets: 3, reps: '6-10', defaultWeight: 0 },
+          { id: 'squat', name: 'Squats sautés', variants: ['Squats sautés', 'Squat bulgare', 'Pistol Squats'], sets: 3, reps: '10-15', defaultWeight: 0 },
+          { id: 'core', name: 'Hollow body hold', sets: 3, reps: '20-30s', defaultWeight: 0 }
+        ]
+      },
+      fbB: {
+        id: 'fbB',
+        name: 'Full Body B - Pull Focus',
+        exercises: [
+          { id: 'pullups', name: 'Tractions', variants: ['Tractions pronation', 'Archer pull-ups', 'L-sit pull-ups'], sets: 4, reps: '5-10', defaultWeight: 0 },
+          { id: 'rows', name: 'Australian pull-ups', variants: ['Australian pull-ups', 'Rowing inversé (table)'], sets: 4, reps: '10-15', defaultWeight: 0 },
+          { id: 'pushups', name: 'Pseudo planche push-ups', variants: ['Pseudo planche push-ups', 'Planche lean', 'Pompes'], sets: 3, reps: '6-10', defaultWeight: 0 },
+          { id: 'lsit', name: 'L-sit', variants: ['L-sit', 'Tuck L-sit'], sets: 3, reps: '10-20s', defaultWeight: 0 },
+          { id: 'legs', name: 'Fentes alternées', variants: ['Fentes alternées', 'Fentes sautées', 'Squat bulgare'], sets: 3, reps: '10/jambe', defaultWeight: 0 },
+          { id: 'core', name: 'Dragon flag', variants: ['Dragon flag', 'Toes-to-bar', 'Hollow body hold'], sets: 3, reps: '5-8', defaultWeight: 0 }
+        ]
+      },
+      fbC: {
+        id: 'fbC',
+        name: 'Full Body C - Skills',
+        exercises: [
+          { id: 'muscleup', name: 'Muscle-ups', variants: ['Muscle-ups', 'Tractions explosives', 'Tractions + Dips'], sets: 5, reps: '1-3', defaultWeight: 0 },
+          { id: 'hspu', name: 'HSPU', variants: ['HSPU', 'Pike push-ups pieds surélevés', 'Handstand hold'], sets: 4, reps: '3-6', defaultWeight: 0 },
+          { id: 'frontlever', name: 'Front lever raises', variants: ['Front lever raises', 'Tuck front lever', 'Skin the cat'], sets: 3, reps: '5-8', defaultWeight: 0 },
+          { id: 'pistol', name: 'Pistol Squats', variants: ['Pistol Squats', 'Pistol assisté', 'Squat bulgare'], sets: 3, reps: '5/jambe', defaultWeight: 0 },
+          { id: 'nordic', name: 'Nordic curl', variants: ['Nordic curl', 'Nordic curl assisté'], sets: 3, reps: '3-6', defaultWeight: 0 },
+          { id: 'support', name: 'Support aux anneaux', variants: ['Support aux anneaux', 'Dips aux anneaux'], sets: 3, reps: '20-30s', defaultWeight: 0 }
+        ]
+      }
+    }
   }
 };
 

@@ -2,7 +2,7 @@
   "expo": {
     "name": "FitTracker Pro",
     "slug": "fittrackerapp",
-    "version": "2.0.0",
+    "version": "2.3.0",
     "orientation": "portrait",
     "icon": "./flex.jpeg",
     "userInterfaceStyle": "dark",
